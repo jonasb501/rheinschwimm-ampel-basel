@@ -1,0 +1,7 @@
+.env
+.venv/
+__pycache__/
+model/
+*.pyc
+.DS_Store
+.hw_api_key

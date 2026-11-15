@@ -1,0 +1,31 @@
+# Extra: Tägliche Ausführung von Feature- und Inference-Pipeline (Scheduling / Orchestrierung)
+# Voraussetzung: Repository Secret HOPSWORKS_API_KEY (Settings -> Secrets and variables -> Actions)
+name: Rheinschwimm-Ampel täglich
+
+on:
+  schedule:
+    - cron: "0 10 * * *"   # 10:00 UTC = 11:00/12:00 Uhr Basel (nahe an RT_HOUR=12 -> wenig Training/Serving Skew)
+  workflow_dispatch:
+    inputs:
+      retrain:
+        description: "Training Pipeline ebenfalls ausführen"
+        type: boolean
+        default: false
+
+jobs:
+  ampel:
+    runs-on: ubuntu-latest
+    env:
+      HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+      HOPSWORKS_PROJECT: ${{ vars.HOPSWORKS_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - name: Feature Pipeline (letzte 10 Tage, Upsert)
+        run: uv run python feature_pipeline.py --start "$(date -u -d '10 days ago' +%F)"
+      - name: Training Pipeline
+        if: ${{ inputs.retrain }}
+        run: uv run python training_pipeline.py
+      - name: Inference Pipeline
+        run: uv run python inference_pipeline.py

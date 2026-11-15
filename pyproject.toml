@@ -1,0 +1,18 @@
+[project]
+name = "rheinschwimm-ampel-basel"
+version = "0.1.0"
+description = "MLOps Projektarbeit: FTI-Pipelines mit Hopsworks Featurestore – Rheinschwimm-Ampel Basel"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "hopsworks[python]>=4.2",
+    "pandas>=2.2",
+    "requests>=2.32",
+    "scikit-learn>=1.5",
+    "joblib>=1.4",
+    "python-dotenv>=1.0",
+    "matplotlib>=3.9",
+]
+
+[tool.uv]
+package = false
