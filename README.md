@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Jonas Bretz <!-- ✏️ ggf. Teampartner/in ergänzen --> |
-| **Repository** | ✏️ `https://github.com/<user>/rheinschwimm-ampel-basel` |
+| **Repository** | [github.com/jonasb501/rheinschwimm-ampel-basel](https://github.com/jonasb501/rheinschwimm-ampel-basel) |
 | **Hopsworks-Projekt** | `MLOps_project_CAS_2026` auf [eu-west.cloud.hopsworks.ai](https://eu-west.cloud.hopsworks.ai) |
 
 Die Ampel beantwortet jeden Tag eine typische Basler Frage: **„Ist morgen ein guter Tag zum Rheinschwimmen?“**
@@ -159,7 +159,7 @@ Getestet auf macOS mit dem Client `hopsworks` 5.2.3. Es funktioniert auch in Git
 
 ### Installation
 ```bash
-git clone https://github.com/<user>/rheinschwimm-ampel-basel.git
+git clone https://github.com/jonasb501/rheinschwimm-ampel-basel.git
 cd rheinschwimm-ampel-basel
 
 uv sync                                  # erstellt .venv mit Python 3.12 und allen Paketen aus uv.lock
